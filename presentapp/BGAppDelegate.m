@@ -7,12 +7,16 @@
 //
 
 #import "BGAppDelegate.h"
+#import "BGRootViewController.h"
 
 @implementation BGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    BGRootViewController *rootViewController = [[BGRootViewController alloc] init];
+    [self.window setRootViewController:rootViewController];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

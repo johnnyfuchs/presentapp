@@ -19,6 +19,8 @@
 		B207AB3A193A723300FCD952 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B207AB22193A723300FCD952 /* UIKit.framework */; };
 		B207AB42193A723300FCD952 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B207AB40193A723300FCD952 /* InfoPlist.strings */; };
 		B207AB44193A723300FCD952 /* presentappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B207AB43193A723300FCD952 /* presentappTests.m */; };
+		BB2EDCC33CD47F56D412FC53 /* kitten.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BB2ED3753F6AAB3465AB2BDE /* kitten.jpeg */; };
+		BB2EDFD0083D970F5EBE77C1 /* BGRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2EDF0A6CE61EB74F6FE8EF /* BGRootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,9 @@
 		B207AB3F193A723300FCD952 /* presentappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "presentappTests-Info.plist"; sourceTree = "<group>"; };
 		B207AB41193A723300FCD952 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B207AB43193A723300FCD952 /* presentappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = presentappTests.m; sourceTree = "<group>"; };
+		BB2ED3753F6AAB3465AB2BDE /* kitten.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = kitten.jpeg; path = Assets/Images/kitten.jpeg; sourceTree = "<group>"; };
+		BB2ED904C2773ADD7D7B8851 /* BGRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRootViewController.h; sourceTree = "<group>"; };
+		BB2EDF0A6CE61EB74F6FE8EF /* BGRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +116,8 @@
 				B207AB2E193A723300FCD952 /* BGAppDelegate.m */,
 				B207AB30193A723300FCD952 /* Images.xcassets */,
 				B207AB25193A723300FCD952 /* Supporting Files */,
+				BB2ED5A76252E4BF84AA4B9C /* ViewControllers */,
+				BB2ED3753F6AAB3465AB2BDE /* kitten.jpeg */,
 			);
 			path = presentapp;
 			sourceTree = "<group>";
@@ -142,6 +149,15 @@
 				B207AB40193A723300FCD952 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BB2ED5A76252E4BF84AA4B9C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BB2ED904C2773ADD7D7B8851 /* BGRootViewController.h */,
+				BB2EDF0A6CE61EB74F6FE8EF /* BGRootViewController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +208,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = beergrammer;
 				TargetAttributes = {
+					B207AB1A193A723300FCD952 = {
+						DevelopmentTeam = R83MTNZF23;
+					};
 					B207AB35193A723300FCD952 = {
 						TestTargetID = B207AB1A193A723300FCD952;
 					};
@@ -222,6 +241,7 @@
 			files = (
 				B207AB29193A723300FCD952 /* InfoPlist.strings in Resources */,
 				B207AB31193A723300FCD952 /* Images.xcassets in Resources */,
+				BB2EDCC33CD47F56D412FC53 /* kitten.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +262,7 @@
 			files = (
 				B207AB2B193A723300FCD952 /* main.m in Sources */,
 				B207AB2F193A723300FCD952 /* BGAppDelegate.m in Sources */,
+				BB2EDFD0083D970F5EBE77C1 /* BGRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,10 +379,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "presentapp/presentapp-Prefix.pch";
 				INFOPLIST_FILE = "presentapp/presentapp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "972E5E2D-5D16-4E0E-8DBC-64EB148CF62A";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -371,10 +396,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "presentapp/presentapp-Prefix.pch";
 				INFOPLIST_FILE = "presentapp/presentapp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "972E5E2D-5D16-4E0E-8DBC-64EB148CF62A";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -438,6 +467,7 @@
 				B207AB49193A723300FCD952 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B207AB4A193A723300FCD952 /* Build configuration list for PBXNativeTarget "presentappTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +476,7 @@
 				B207AB4C193A723300FCD952 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
