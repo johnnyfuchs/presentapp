@@ -8,7 +8,12 @@
 
 @interface BGRootViewController ()
 @property(nonatomic, strong) NSMutableArray *rectViews;
-@property(nonatomic, strong) UIScrollView *myView;
+@property(nonatomic, strong) UIScrollView *scrollView;
+@property(nonatomic, strong) NSArray *sliders;
+@property(nonatomic) float x;
+@property(nonatomic) float y;
+@property(nonatomic) float z;
+@property(nonatomic) float p;
 @end
 
 @implementation BGRootViewController
@@ -16,11 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
-
-    self.myView = [[UIScrollView alloc] initWithFrame:self.view.frame];
-    self.myView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 10);
-    self.myView.backgroundColor = [UIColor blueColor];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 10);
+    self.scrollView.backgroundColor = [UIColor blueColor];
 
     self.rectViews = [[NSMutableArray alloc] init];
     CGFloat rectHeight = 200;
@@ -33,28 +36,56 @@
         [myRect setImage:[UIImage imageNamed:@"kitten.jpeg"]];
         myRect.backgroundColor = [UIColor whiteColor];
         [self.rectViews addObject:myRect];
-        [self.myView addSubview:myRect];
+        [self.scrollView addSubview:myRect];
         count2 = 10;
         while(count2--){
             myRect = [[UIImageView alloc] initWithFrame:CGRectMake(( rectHeight * count2 ), ( (rectHeight + 20)* count ) + 20, 100, rectHeight)];
             [myRect setImage:[UIImage imageNamed:@"kitten.jpeg"]];
             myRect.backgroundColor = [UIColor whiteColor];
             [self.rectViews addObject:myRect];
-            [self.myView addSubview:myRect];
+            [self.scrollView addSubview:myRect];
         }
     }
 
+    self.x = 0.0f;
+    self.y = 0.0f;
+    self.z = 0.0f;
 
-    CALayer *layer = self.myView.layer;
-    CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
-    rotationAndPerspectiveTransform.m34 = 1.0 / -800;
-    //rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, 60.0f * M_PI / 180.0f, 1.0f, 0.15f, -0.30f);
-    rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, 60.0f * M_PI / 180.0f, 1.0f, 0.0f, 0.0f);
-
-    //rotationAndPerspectiveTransform = CATransform3DTranslate(rotationAndPerspectiveTransform, 0, -350, 0 );
-    layer.transform = rotationAndPerspectiveTransform;
-    [self.view addSubview:self.myView];
+    [self.view addSubview:self.scrollView];
     self.view.backgroundColor = [UIColor whiteColor];
+
+
+    UISlider *slider;
+    NSUInteger sliderCount = 4;
+    while (sliderCount --){
+        slider = [[UISlider alloc] initWithFrame:CGRectMake(800, (sliderCount * 50) + 100, 200, 10)];
+        [slider addTarget:self action:@selector(sliderUpdated:) forControlEvents:UIControlEventValueChanged];
+        slider.tag = sliderCount;
+        [self.view addSubview:slider];
+    }
+}
+
+- (void)sliderUpdated:(UISlider *)slider {
+    NSLog(@"%f", slider.value);
+
+    switch (slider.tag){
+        case 0: self.p = slider.value; break;
+        case 1: self.z = slider.value; break;
+        case 2: self.y = slider.value; break;
+        case 3: self.x = slider.value; break;
+    }
+
+
+    CALayer *layer = self.scrollView.layer;
+    CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
+    rotationAndPerspectiveTransform.m34 = -1.0 / (200 + (self.p * 1000));
+    
+    rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, self.x * 2 * M_PI, 1, 0, 0);
+    rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, self.y * 2 * M_PI, 0, 1, 0);
+    rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, self.z * 2 * M_PI, 0, 0, 1);
+    
+    layer.transform = rotationAndPerspectiveTransform;
+    [self.view sendSubviewToBack:self.scrollView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,7 +120,7 @@
                           delay:0.0f
                         options:0
                      animations:^{
-                         [self.myView setFrame:newFrame];
+                         [self.scrollView setFrame:newFrame];
                      }
                      completion:^(BOOL finished) {}];
 }
